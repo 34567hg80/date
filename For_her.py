@@ -70,7 +70,8 @@ def show_hypnotized():
                 "</div>", unsafe_allow_html=True)
 
 # Display the question
-st.title("Will you go on a date with me?")
+st.title("Made in _A_T_'s Lab")
+st.title("Will you accompany me during my lows, promise to listen to Sunday suspense, watch movies, and listen to the songs I share?")
 st.write("Please select your answer below:")
 
 # Handle the Yes button
