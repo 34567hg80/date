@@ -1,13 +1,13 @@
 import streamlit as st
 
-# Set up initial page configuration
+# Set up page configuration
 st.set_page_config(page_title="Date Proposal", layout="centered")
 
-# Use session state to manage button clicks and behavior
-if 'clicked_no' not in st.session_state:
-    st.session_state.clicked_no = False
-if 'clicked_yes' not in st.session_state:
-    st.session_state.clicked_yes = False
+# Initialize session state for button visibility
+if "show_yes" not in st.session_state:
+    st.session_state.show_yes = False  # Initially, "Yes" button is disabled
+if "show_no" not in st.session_state:
+    st.session_state.show_no = True   # "No" button is visible by default
 
 # Function to display the "Yes" scenario with love animation
 def show_love():
@@ -16,85 +16,26 @@ def show_love():
                 "<h2 style='text-align: center;'>Thank you! You've made my day! 💕💞💓</h2>"
                 "</div>", unsafe_allow_html=True)
 
-    # Love heart animation using HTML & CSS
-    love_animation = """
-    <div style="text-align:center; background-color: pink;">
-        <div class="heart"></div>
-        <div class="heart"></div>
-        <div class="heart"></div>
-        <style>
-        .heart {
-            position: relative;
-            width: 100px;
-            height: 90px;
-            background-color: red;
-            margin: 50px auto;
-            transform: rotate(-45deg);
-            animation: beat 1s infinite;
-        }
-        .heart:before,
-        .heart:after {
-            content: "";
-            position: absolute;
-            width: 100px;
-            height: 90px;
-            background-color: red;
-            border-radius: 50%;
-        }
-        .heart:before {
-            top: -50px;
-            left: 0;
-        }
-        .heart:after {
-            left: 50px;
-            top: 0;
-        }
-        @keyframes beat {
-            0%, 100% {
-                transform: scale(1) rotate(-45deg);
-            }
-            50% {
-                transform: scale(1.1) rotate(-45deg);
-            }
-        }
-        </style>
-    </div>
-    """
-    st.markdown(love_animation, unsafe_allow_html=True)
-
-# Function to display the "No" scenario
+# Function to display the hypnotized message
 def show_hypnotized():
     st.markdown("<div style='background-color: black; padding: 20px;'>"
                 "<h2 style='color: white; text-align: center;'>You can only select 'Yes'... "
                 "You have been hypnotized by me... 😏✨</h2>"
                 "</div>", unsafe_allow_html=True)
 
-# Display the question
-st.title("Made in _A_T_'s Lab")
-st.title("Will you accompany me during my lows, promise to listen to Sunday suspense, watch movies, and listen to the songs I share?")
+# Main question
+st.title("Made in India By Hritesh.... :)")
+st.title("Hey Ma'am, I was thinking it might be fun to try something different, how about a virtual movie date? We could pick a movie we both like, sync it up, and watch together while on a call. yes or no?")
 st.write("Please select your answer below:")
 
-# Handle the Yes button
-if st.button("Yes 💖"):
-    st.session_state.clicked_yes = True
-    show_love()
-
-# Handle the No button behavior
-if st.session_state.clicked_no:
-    # If No has been clicked, display the hypnotized message
-    show_hypnotized()
-else:
+# Display the "No" button (if visible)
+if st.session_state.show_no:
     if st.button("No ❌"):
-        st.session_state.clicked_no = True
-        # Apply dark theme immediately after clicking "No"
-        st.markdown(
-            """
-            <style>
-            .main {
-                background-color: black;
-                color: white;
-            }
-            </style>
-            """, unsafe_allow_html=True
-        )
-        show_hypnotized()
+        st.session_state.show_no = False  # Hide the "No" button after clicking
+        st.session_state.show_yes = True  # Make the "Yes" button visible
+        show_hypnotized()  # Display the hypnotized message
+
+# Display the "Yes" button (if visible)
+if st.session_state.show_yes:
+    if st.button("Yes 💖"):
+        show_love()  # Display the love animation
