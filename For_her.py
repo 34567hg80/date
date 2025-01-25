@@ -25,7 +25,7 @@ def show_hypnotized():
 
 # Main question
 st.title("Made in India By Hritesh.... :)")
-st.title("Hey Ma'am, I was thinking it might be fun to try something different, how about a virtual movie date? We could pick a movie we both like, sync it up, and watch together while on a call. yes or no?")
+st.title("Hey Ma'am, hope you're doing well! I was thinking, with Valentine’s Day around the corner, it might be fun to try something a little different. How about a virtual movie date? We could pick a movie we both enjoy, sync it up, and watch together while on a call. Let me know what you think!😊 yes or no?")
 st.write("Please select your answer below:")
 
 # Display the "No" button (if visible)
